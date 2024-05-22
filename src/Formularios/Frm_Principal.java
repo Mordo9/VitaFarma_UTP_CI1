@@ -4,7 +4,6 @@ package Formularios;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
-import Formularios.Frm_Login;
 import Clases.Cls_Vencimiento;
 import Conexion.Conectar;
 import java.sql.Connection;
@@ -171,6 +170,7 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(216, 255, 219));
         jButton7.setForeground(new java.awt.Color(25, 25, 25));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pngwing.com.png"))); // NOI18N
         jButton7.setText("Proveedores");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,7 +231,9 @@ public class Frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        Frm_Proveedor f = new Frm_Proveedor();
+        contenedor.add(f);
+        f.show();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

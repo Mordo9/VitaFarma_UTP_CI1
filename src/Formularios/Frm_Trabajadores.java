@@ -24,28 +24,27 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
 //
     }
 
-    private void listar(){
+    private void listar() {
         jtb_trabajador.setModel(CP.getDatosTrabajadores());
-        columnModel.getColumn(1).setPreferredWidth(600);
     }
-    
-    private void iniciar(){
-        txt_dni.setEnabled(true);
-        txt_nclave.setEnabled(true);
-        txt_nusuario.setEnabled(true);
-        txt_nombreusr.setEnabled(true);
+
+    private void iniciar() {
+        txt_dni.setEnabled(false);
+        txt_nclave.setEnabled(false);
+        txt_nusuario.setEnabled(false);
+        txt_nombreusr.setEnabled(false);
     }
-    
-    private void activar(){
+
+    private void activar() {
         txt_nusuario.setEnabled(true);
         txt_nclave.setEnabled(true);
         txt_dni.setEnabled(true);
         txt_nombreusr.setEnabled(true);
         txt_nusuario.requestFocus();
-        
+
     }
-    
-    private void limpiar(){
+
+    private void limpiar() {
         txt_nusuario.setText("");
         txt_nclave.setText("");
         txt_dni.setText("");
@@ -53,35 +52,34 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
         txt_nombreusr.requestFocus();
         jtb_trabajador.clearSelection();
     }
-    
+
     private void guardar() {
-    String usuario = txt_nusuario.getText();
-    String clave = txt_nclave.getText();
-    String dni = txt_dni.getText();
-    String nombreusr = txt_nombreusr.getText();
+        String usuario = txt_nusuario.getText();
+        String clave = txt_nclave.getText();
+        String dni = txt_dni.getText();
+        String nombreusr = txt_nombreusr.getText();
 
-    if (num == 0) {
-        int respuesta = CP.registrarTrabajador(usuario, clave, dni, nombreusr);
-        if (respuesta > 0) {
-            listar();
-            limpiar();
-            iniciar();
-            bt_actualizar.setEnabled(false);
-        }
-    } else {
-        int row = jtb_trabajador.getSelectedRow();
-        String usuarioSeleccionado = jtb_trabajador.getValueAt(row, 1).toString(); // Obtener el usuario del trabajador seleccionado en la tabla
+        if (num == 0) {
+            int respuesta = CP.registrarTrabajador(usuario, clave, dni, nombreusr);
+            if (respuesta > 0) {
+                listar();
+                limpiar();
+                iniciar();
+                bt_actualizar.setEnabled(false);
+            }
+        } else {
+            int row = jtb_trabajador.getSelectedRow();
+            String usuarioSeleccionado = jtb_trabajador.getValueAt(row, 1).toString(); // Obtener el usuario del trabajador seleccionado en la tabla
 
-        int respuesta = CP.actualizarTrabajador(usuario, clave, dni, nombreusr, usuarioSeleccionado);
-        if (respuesta > 0) {
-            listar();
-            limpiar();
-            iniciar();
-            num = 0;
+            int respuesta = CP.actualizarTrabajador(usuario, clave, dni, nombreusr, usuarioSeleccionado);
+            if (respuesta > 0) {
+                listar();
+                limpiar();
+                iniciar();
+                num = 0;
+            }
         }
     }
-}
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -138,7 +136,7 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
                 bt_nuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(bt_nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 70, -1, -1));
+        jPanel1.add(bt_nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 70, 110, 30));
 
         bt_guardar.setText("Guardar");
         bt_guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +144,7 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
                 bt_guardarActionPerformed(evt);
             }
         });
-        jPanel1.add(bt_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 110, -1, -1));
+        jPanel1.add(bt_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 110, 110, 30));
 
         bt_actualizar.setText("Editar");
         bt_actualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +152,7 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
                 bt_actualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(bt_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 150, -1, -1));
+        jPanel1.add(bt_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 150, 110, 30));
 
         bt_eliminar.setText("Borrar");
         bt_eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -162,7 +160,7 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
                 bt_eliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(bt_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 190, -1, -1));
+        jPanel1.add(bt_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, 110, 30));
 
         jtb_trabajador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,11 +186,11 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1029, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -201,12 +199,12 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
     private void jtb_trabajadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtb_trabajadorMouseClicked
         bt_actualizar.setEnabled(true);
         bt_eliminar.setEnabled(true);
-        
-        int row = jtb_trabajador.getSelectedRow(); 
-        txt_nusuario.setText(jtb_trabajador.getValueAt(row, 0).toString());
-        txt_nclave.setText(jtb_trabajador.getValueAt(row, 1).toString());
-        txt_dni.setText(jtb_trabajador.getValueAt(row, 2).toString());
-        txt_nombreusr.setText(jtb_trabajador.getValueAt(row, 3).toString());
+
+        int row = jtb_trabajador.getSelectedRow();
+        txt_nusuario.setText(jtb_trabajador.getValueAt(row, 1).toString());
+        txt_nclave.setText(jtb_trabajador.getValueAt(row, 2).toString());
+        txt_dni.setText(jtb_trabajador.getValueAt(row, 3).toString());
+        txt_nombreusr.setText(jtb_trabajador.getValueAt(row, 4).toString());
     }//GEN-LAST:event_jtb_trabajadorMouseClicked
 
     private void bt_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_nuevoActionPerformed
@@ -217,12 +215,11 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
 
     private void bt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarActionPerformed
         int fila = jtb_trabajador.getSelectedRowCount();
-        if (fila < 1){
+        if (fila < 1) {
             JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla");
-        }
-        else{
-            int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar?","Eliminar Producto", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if(resp==0){
+        } else {
+            int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar?", "Eliminar Producto", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (resp == 0) {
                 if (CP.eliminarTrabajador(jtb_trabajador.getValueAt(jtb_trabajador.getSelectedRow(), 1).toString()) > 0) {
                     listar();
                     limpiar();
@@ -232,7 +229,7 @@ public class Frm_Trabajadores extends javax.swing.JInternalFrame {
                 }
             }
         }
-       
+
     }//GEN-LAST:event_bt_eliminarActionPerformed
 
     private void bt_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarActionPerformed

@@ -1,4 +1,4 @@
-package Clases;
+    package Clases;
 
 import Conexion.Conectar;
 import java.sql.PreparedStatement;
