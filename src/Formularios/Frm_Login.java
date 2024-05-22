@@ -48,7 +48,7 @@ public class Frm_Login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        bt_inicio = new javax.swing.JButton();
         txt_usuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -67,15 +67,15 @@ public class Frm_Login extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Iniciar Sesión");
-        jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bt_inicio.setBackground(new java.awt.Color(0, 51, 153));
+        bt_inicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        bt_inicio.setForeground(new java.awt.Color(255, 255, 255));
+        bt_inicio.setText("Iniciar Sesión");
+        bt_inicio.setBorder(null);
+        bt_inicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        bt_inicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bt_inicioActionPerformed(evt);
             }
         });
 
@@ -104,7 +104,7 @@ public class Frm_Login extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txt_clave)
                     .addComponent(txt_usuario)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
+                    .addComponent(bt_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(121, 121, 121)
@@ -125,7 +125,7 @@ public class Frm_Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_clave, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
 
@@ -143,9 +143,9 @@ public class Frm_Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bt_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_inicioActionPerformed
         login();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bt_inicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +178,7 @@ public class Frm_Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bt_inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

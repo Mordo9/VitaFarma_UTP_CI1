@@ -135,6 +135,12 @@ public class Frm_Salida extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Número de Factura *");
 
+        txt_nfactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nfacturaActionPerformed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Código del Producto *");
 
@@ -536,6 +542,10 @@ public class Frm_Salida extends javax.swing.JInternalFrame {
     private void jbt_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_guardar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbt_guardar1ActionPerformed
+
+    private void txt_nfacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nfacturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nfacturaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

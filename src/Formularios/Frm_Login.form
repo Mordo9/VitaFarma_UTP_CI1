@@ -72,7 +72,7 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <Component id="txt_clave" alignment="0" max="32767" attributes="0"/>
                           <Component id="txt_usuario" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton1" alignment="0" pref="320" max="32767" attributes="0"/>
+                          <Component id="bt_inicio" alignment="0" pref="320" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="13" max="32767" attributes="0"/>
                   </Group>
@@ -97,14 +97,14 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txt_clave" min="-2" pref="42" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="bt_inicio" min="-2" pref="39" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="bt_inicio">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="33" red="0" type="rgb"/>
@@ -124,7 +124,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_inicioActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_usuario">

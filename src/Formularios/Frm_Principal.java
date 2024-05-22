@@ -5,14 +5,30 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
 import Formularios.Frm_Login;
+import Clases.Cls_Vencimiento;
+import Conexion.Conectar;
+import java.sql.Connection;
+import java.sql.Date;
+import javax.swing.JOptionPane;
 
 public class Frm_Principal extends javax.swing.JFrame {
+
+    private Cls_Vencimiento vencimiento;
 
     public Frm_Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
         txt_menu.requestFocus();
+
+        // Obtener la conexión y crear la instancia de Cls_Vencimiento
+        Connection con = new Conectar().getConnection();
+        if (con != null) {
+            vencimiento = new Cls_Vencimiento(con);
+            inicializar(); // Llama a inicializar()
+        } else {
+            System.err.println("Error: no se pudo establecer la conexión con la base de datos.");
+        }
     }
 
     @Override
@@ -21,7 +37,15 @@ public class Frm_Principal extends javax.swing.JFrame {
                 getImage(ClassLoader.getSystemResource("Imagenes/LogoVentana.png"));
 
         return retValue;
-
+    }
+    
+    private void inicializar() {
+        if (vencimiento != null) {
+            Date fechaActual = new Date(System.currentTimeMillis());
+            if (vencimiento.hayProductosCercanosAVencimiento(fechaActual)) {
+                JOptionPane.showMessageDialog(this, "Advertencia: Hay productos cercanos a la fecha de vencimiento.");
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -37,6 +61,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Inventario");
@@ -66,7 +91,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jPanel1.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 1040, 550));
 
         txt_menu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txt_menu.setForeground(new java.awt.Color(255, 255, 255));
+        txt_menu.setForeground(new java.awt.Color(25, 25, 25));
         txt_menu.setText("MENU PRINCIPAL");
         jPanel1.add(txt_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, 20));
 
@@ -78,7 +103,7 @@ public class Frm_Principal extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 550, 110, 30));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, 150, 30));
 
         jButton1.setBackground(new java.awt.Color(216, 255, 219));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -91,7 +116,7 @@ public class Frm_Principal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 230, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 230, 40));
 
         jButton3.setBackground(new java.awt.Color(216, 255, 219));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -104,7 +129,7 @@ public class Frm_Principal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 230, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 230, 40));
 
         jButton4.setBackground(new java.awt.Color(216, 255, 219));
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -117,7 +142,7 @@ public class Frm_Principal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 230, 40));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 230, 40));
 
         jButton5.setBackground(new java.awt.Color(216, 255, 219));
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -130,7 +155,7 @@ public class Frm_Principal extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 230, 40));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 230, 40));
 
         jButton2.setBackground(new java.awt.Color(216, 255, 219));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -142,7 +167,17 @@ public class Frm_Principal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 230, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 230, 40));
+
+        jButton7.setBackground(new java.awt.Color(216, 255, 219));
+        jButton7.setForeground(new java.awt.Color(25, 25, 25));
+        jButton7.setText("Proveedores");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 230, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,7 +211,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         f.show();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Frm_Productos f = new Frm_Productos();
         contenedor.add(f);
@@ -194,6 +229,10 @@ public class Frm_Principal extends javax.swing.JFrame {
         loginForm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,6 +268,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel txt_menu;
     // End of variables declaration//GEN-END:variables

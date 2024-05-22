@@ -1,6 +1,7 @@
 package Clases;
 
 import Conexion.Conectar;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,8 +13,8 @@ public class Cls_Productos {
     private ResultSet RS;
     private final Conectar CN;
     private DefaultTableModel DT;
-    private final String SQL_INSERT_PRODUCTOS = "INSERT INTO producto (pro_codigo, pro_descripcion, pro_categoria) values (?, ?, ?)";
-    private final String SQL_SELECT_PRODUCTOS = "SELECT * FROM producto";
+    private final String SQL_INSERT_PRODUCTOS = "INSERT INTO producto (pro_codigo, pro_descripcion, pro_categoria, pro_fv) values (?, ?, ?, ?)";
+    private final String SQL_SELECT_PRODUCTOS = "SELECT pro_codigo, pro_descripcion, pro_categoria, pro_fv FROM producto";
     
     public Cls_Productos(){
         PS = null;
@@ -30,6 +31,7 @@ public class Cls_Productos {
         DT.addColumn("Código");
         DT.addColumn("Descripción");
         DT.addColumn("Categoría");
+        DT.addColumn("Fecha de Vencimiento");
         return DT;
     }
     
@@ -38,11 +40,12 @@ public class Cls_Productos {
             setTitulosProductos();
             PS = CN.getConnection().prepareStatement(SQL_SELECT_PRODUCTOS);
             RS = PS.executeQuery();
-            Object[] fila = new Object[3];
+            Object[] fila = new Object[4];
             while(RS.next()){
                 fila[0] = RS.getString(1);
                 fila[1] = RS.getString(2);
                 fila[2] = RS.getString(3);
+                fila[3] = RS.getDate(4);
                 DT.addRow(fila);
             }
         } catch (SQLException e) {
@@ -55,13 +58,14 @@ public class Cls_Productos {
         return DT;
     }
     
-    public int registrarProducto(String codigo, String descripcion, String categoria){
+    public int registrarProducto(String codigo, String descripcion, String categoria, Date fecha_vencimiento){
         int res = 0;
         try {
             PS = CN.getConnection().prepareStatement(SQL_INSERT_PRODUCTOS);
             PS.setString(1, codigo);
             PS.setString(2, descripcion);
             PS.setString(3, categoria);
+            PS.setDate(4, fecha_vencimiento);
             res = PS.executeUpdate();
             if(res > 0){
                 JOptionPane.showMessageDialog(null, "Producto registrado con éxito.");
@@ -105,8 +109,8 @@ public class Cls_Productos {
         return res;
     }
     
-    public int actualizarProducto(String codigo, String descripcion, String categoria, String codigo_old){
-        String SQL = "UPDATE producto SET pro_codigo='" + codigo + "', pro_descripcion='" + descripcion + "', pro_categoria='" + categoria + "' WHERE pro_codigo='" + codigo_old + "'";
+    public int actualizarProducto(String codigo, String descripcion, String categoria, Date fecha_vencimiento, String codigo_old){
+        String SQL = "UPDATE producto SET pro_codigo='" + codigo + "', pro_descripcion='" + descripcion + "', pro_categoria='" + categoria + "', pro_fv='" + fecha_vencimiento + "' WHERE pro_codigo='" + codigo_old + "'";
         int res = 0;
         try {
             PS = CN.getConnection().prepareStatement(SQL);
