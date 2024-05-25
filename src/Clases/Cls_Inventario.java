@@ -8,8 +8,6 @@ import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import java.util.ArrayList;
 
-
-
 public class Cls_Inventario {
 
     private PreparedStatement PS;
@@ -47,12 +45,13 @@ public class Cls_Inventario {
             RS = PS.executeQuery();
             Object[] fila = new Object[6];
             while (RS.next()) {
-                fila[0] = RS.getString(1);
-                fila[1] = RS.getString(2);
-                fila[2] = RS.getInt(3);
-                fila[3] = RS.getInt(4);
-                fila[4] = RS.getInt(5);
-                fila[5] = RS.getString(6);
+                fila[0] = RS.getString(1); // Código de producto
+                fila[1] = RS.getString(2); // Descripción de producto
+                fila[2] = RS.getInt(3);    // Cantidad total de entradas
+                fila[3] = RS.getInt(4);    // Cantidad total de salidas
+                // Calcular el stock restando las salidas de las entradas
+                fila[4] = RS.getInt(3) - RS.getInt(4);
+                fila[5] = RS.getString(6); // Categoría de producto
                 DT.addRow(fila);
             }
         } catch (SQLException e) {

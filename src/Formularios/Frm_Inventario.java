@@ -21,7 +21,6 @@ public class Frm_Inventario extends javax.swing.JInternalFrame {
 
     private void listar() {
         jtb_inventario.setModel(CP.getDatosInventario());
-        columnModel.getColumn(1).setPreferredWidth(400);
     }
 
     @SuppressWarnings("unchecked")
@@ -117,7 +116,7 @@ public class Frm_Inventario extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         listar();
-        int stockMinimo = 10; // Puedes ajustar este valor según tus necesidades
+        int stockMinimo = 40; // Puedes ajustar este valor según tus necesidades
         List<String> productosBajoStock = CP.verificarBajoStock(stockMinimo);
 
         if (!productosBajoStock.isEmpty()) {
